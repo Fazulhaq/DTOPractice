@@ -20,28 +20,31 @@ public class UserService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<UserLocationDTO> getAllUsersLocation(){
+    public List<UserLocationDTO> getAllUsersLocation() {
         return userRepository.findAll()
-        .stream()
-        .map(this::convertEntityDto)
-        .collect(Collectors.toList());
+                .stream()
+                .map(this::convertEntityDto)
+                .collect(Collectors.toList());
+    }
 
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     // private UserLocationDTO convertEntityDto(User user){
-    //     UserLocationDTO userLocationDTO = new UserLocationDTO();
-    //     userLocationDTO.setUserId(user.getId());
-    //     userLocationDTO.setEmail(user.getEmail());
-    //     userLocationDTO.setPlace(user.getLocation().getPlace());
-    //     userLocationDTO.setLongitude(user.getLocation().getLongitude());
-    //     userLocationDTO.setLatitude(user.getLocation().getLatitude());
-    //     return userLocationDTO;
+    // UserLocationDTO userLocationDTO = new UserLocationDTO();
+    // userLocationDTO.setUserId(user.getId());
+    // userLocationDTO.setEmail(user.getEmail());
+    // userLocationDTO.setPlace(user.getLocation().getPlace());
+    // userLocationDTO.setLongitude(user.getLocation().getLongitude());
+    // userLocationDTO.setLatitude(user.getLocation().getLatitude());
+    // return userLocationDTO;
     // }
 
-    private UserLocationDTO convertEntityDto(User user){
-        
+    private UserLocationDTO convertEntityDto(User user) {
+
         modelMapper.getConfiguration()
-            .setMatchingStrategy(MatchingStrategies.LOOSE);
+                .setMatchingStrategy(MatchingStrategies.LOOSE);
 
         UserLocationDTO userLocationDTO = new UserLocationDTO();
         userLocationDTO = modelMapper.map(user, UserLocationDTO.class);
