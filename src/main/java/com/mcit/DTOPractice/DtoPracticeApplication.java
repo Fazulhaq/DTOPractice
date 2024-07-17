@@ -1,9 +1,11 @@
 package com.mcit.DTOPractice;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import com.mcit.DTOPractice.model.Location;
 import com.mcit.DTOPractice.model.User;
@@ -13,6 +15,10 @@ import com.mcit.DTOPractice.repository.UserRepository;
 @SpringBootApplication
 public class DtoPracticeApplication implements CommandLineRunner {
 
+	@Bean
+	public ModelMapper modelMapper(){
+		return new ModelMapper();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(DtoPracticeApplication.class, args);
 	}
